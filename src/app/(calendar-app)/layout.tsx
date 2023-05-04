@@ -1,20 +1,25 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import AppShell from './app-shell'
 
-export default function Document() {
+import '@/styles/tailwind.css'
+
+export const metadata = {
+  title: 'Calendar App | Pro Tailwind',
+}
+
+export default function RootLayout({ children }) {
   return (
-    <Html>
-      <Head>
+    <html>
+      <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link
           href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap"
           rel="stylesheet"
         />
-      </Head>
-      <body className="antialiased">
-        <Main />
-        <NextScript />
+      </head>
+      <body>
+        <AppShell>{children}</AppShell>
       </body>
-    </Html>
+    </html>
   )
 }

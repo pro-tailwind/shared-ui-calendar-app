@@ -1,11 +1,17 @@
-import { Calendar } from '../components/calendar'
-import { TimePicker } from '../components/time-picker'
-import { TimezonePicker } from '../components/timezone-picker'
+'use client'
+
+import { useContext } from 'react'
+import { SelectedDateContext } from './app-shell'
+
+import { Calendar } from '@/components/calendar'
+import { TimePicker } from '@/components/time-picker'
+import { TimezonePicker } from '@/components/timezone-picker'
 import { getLocalTimeZone, today } from '@internationalized/date'
 
-import { bookingAvailabilities } from '../data'
+import { bookingAvailabilities } from '@/data'
 
-export default function Homepage({ selectedDate, setSelectedDate }) {
+export default function Homepage() {
+  const { selectedDate, setSelectedDate } = useContext(SelectedDateContext)
   const currentDay = today(getLocalTimeZone())
   return (
     <div className="mx-auto grid h-full max-w-lg grid-rows-[auto,1fr] gap-8 md:max-w-none">

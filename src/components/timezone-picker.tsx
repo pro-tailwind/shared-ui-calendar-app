@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect, Fragment } from 'react'
 import { useLocale } from 'react-aria'
 import cx from 'classnames'

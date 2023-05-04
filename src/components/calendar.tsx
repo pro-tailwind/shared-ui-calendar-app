@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import {
   useCalendar,
@@ -22,7 +24,7 @@ import { useCalendarState } from 'react-stately'
 
 import cx from 'classnames'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
-import { Availability } from '../data'
+import { Availability } from '@/data'
 
 // ----------------------------
 // Main component

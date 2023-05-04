@@ -1,11 +1,13 @@
+'use client'
+
 import { useState } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import cx from 'classnames'
 import { useDateFormatter } from 'react-aria'
 import { CalendarDate, getLocalTimeZone, isSameDay, parseDateTime } from '@internationalized/date'
 
 import { Button } from './button'
-import { Availability } from '../data'
+import type { Availability } from '@/data'
 
 type TimePickerProps = {
   selectedDate: CalendarDate

@@ -1,18 +1,20 @@
+'use client'
+
 import { useState } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useDateFormatter } from 'react-aria'
 
-import { Button } from '../components/button'
-import { Input, Textarea } from '../components/input'
+import { Button } from '@/components/button'
+import { Input, Textarea } from '@/components/input'
 
-export default function BookingDetailsPage() {
+export default function BookingDetailsPage({ searchParams }) {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
 
   const dateFormatter = useDateFormatter({ dateStyle: 'full' })
   const timeFormatter = useDateFormatter({ timeStyle: 'short' })
 
-  const { time } = router.query
+  const { time } = searchParams
   // TypeScript hints that time is `string | string[]` but we want on only one string...
   const timeString = Array.isArray(time) ? time[0] : time
 
