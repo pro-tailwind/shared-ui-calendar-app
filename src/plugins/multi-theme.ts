@@ -1,18 +1,26 @@
-const plugin = require('tailwindcss/plugin')
-const hexRgb = require('hex-rgb')
+import plugin from 'tailwindcss/plugin'
+import hexRgb from 'hex-rgb'
+
+import themes from '../themes.json'
+
+type Themes = typeof themes
+
+type Options = {
+  themes: Themes
+}
 
 // ------------------------------
 // Helper functions
 // ------------------------------
 
 // RGB conversion
-function getRgbChannels(hex) {
+function getRgbChannels(hex: string): string {
   const { red, green, blue } = hexRgb(hex)
   return `${red} ${green} ${blue}`
 }
 
 // CSS vars generator
-function getCssVarsDeclarations(input, path = [], output = {}) {
+function getCssVarsDeclarations(input, path: string[] = [], output = {}) {
   Object.entries(input).forEach(([key, value]) => {
     const newPath = path.concat(key)
     if (typeof value !== 'string') {
@@ -25,7 +33,7 @@ function getCssVarsDeclarations(input, path = [], output = {}) {
 }
 
 // Color utilities generator
-function getColorUtilitiesWithCssVarsReference(input, path = [], output = {}) {
+function getColorUtilitiesWithCssVarsReference(input, path: string[] = [], output = {}) {
   Object.entries(input).forEach(([key, value]) => {
     const newPath = path.concat(key)
     if (typeof value !== 'string') {
@@ -42,7 +50,7 @@ function getColorUtilitiesWithCssVarsReference(input, path = [], output = {}) {
 // ------------------------------
 
 const multiThemePlugin = plugin.withOptions(
-  function (options) {
+  function (options: Options) {
     const themes = options?.themes
     if (!themes)
       throw new Error(
@@ -60,7 +68,7 @@ const multiThemePlugin = plugin.withOptions(
       })
     }
   },
-  function (options) {
+  function (options: Options) {
     const { themes } = options
     return {
       theme: {
@@ -72,4 +80,4 @@ const multiThemePlugin = plugin.withOptions(
   }
 )
 
-module.exports = multiThemePlugin
+export default multiThemePlugin
