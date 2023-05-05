@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import cx from 'classnames'
+import twMerge from 'classnames'
 import { useDateFormatter } from 'react-aria'
 import { CalendarDate, getLocalTimeZone, isSameDay, parseDateTime } from '@internationalized/date'
 
@@ -34,7 +34,7 @@ export function TimePicker({ selectedDate, bookingAvailabilities }: TimePickerPr
       <div className="-mx-4 overflow-y-auto p-4">
         <div className="relative">
           <div
-            className={cx(
+            className={twMerge(
               'absolute -inset-x-4 inset-y-0 backdrop-blur-sm backdrop-saturate-0 transition',
               hasAvailability
                 ? 'pointer-events-none z-0 opacity-0 duration-300 ease-out'
@@ -90,21 +90,22 @@ function TimeSlot({ availability, selectedTime, setSelectedTime }) {
   const isSelected = selectedTime === availability.startTime
   return (
     <li
-      className={cx(
-        'flex gap-1 overflow-hidden rounded-lg',
+      className={twMerge(
+        'flex items-center gap-1 overflow-hidden rounded',
         isSelected && 'bg-primary-600 bg-stripes'
       )}
     >
       <div
-        className={cx(
+        className={twMerge(
           'shrink-0 transition-all',
           isSelected ? 'basis-1/2 text-white ease-out' : 'basis-full'
         )}
       >
         <Button
           block
-          focusInset
-          look={isSelected ? 'ghost' : 'secondary'}
+          size='large'
+          impact={isSelected ? 'none' : 'light'}
+          className={twMerge('focus:ring-inset active:translate-y-0', isSelected ? 'disabled:opacity-100 text-white' : '')}
           disabled={isSelected}
           onClick={() => setSelectedTime(availability.startTime)}
         >
@@ -114,8 +115,7 @@ function TimeSlot({ availability, selectedTime, setSelectedTime }) {
       <div className="m-2 basis-1/2">
         <Button
           size="small"
-          look="secondary"
-          hasIcon
+          impact="light"
           block
           tabIndex={isSelected ? 0 : -1}
           onClick={() => router.push(`/booking-details?time=${availability.startTime}`)}

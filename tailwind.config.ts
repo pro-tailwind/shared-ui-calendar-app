@@ -34,7 +34,7 @@ const config = {
       }),
     },
   },
-  plugins: [bgStripesPlugin, multiThemePlugin({ themes: colorThemes })],
+  plugins: [bgStripesPlugin, multiThemePlugin({ colorThemes })],
 } satisfies Config
 
 export default config

@@ -4,12 +4,12 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useDateFormatter } from 'react-aria'
 
-import { Button } from '@/components/button'
+import { Button, ButtonProps } from '@/components/button'
 import { Input, Textarea } from '@/components/input'
 
 export default function BookingDetailsPage({ searchParams }) {
   const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
+  const [status, setStatus] = useState<ButtonProps['status']>('idle')
 
   const dateFormatter = useDateFormatter({ dateStyle: 'full' })
   const timeFormatter = useDateFormatter({ timeStyle: 'short' })
@@ -26,10 +26,9 @@ export default function BookingDetailsPage({ searchParams }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    setIsLoading(true)
+    setStatus('loading')
     setTimeout(() => {
       router.push(`/confirmation?time=${time}`)
-      setIsLoading(false)
     }, 2500)
   }
 
@@ -54,7 +53,7 @@ export default function BookingDetailsPage({ searchParams }) {
             <Textarea name="notes" label="Notes & Questions" id="notes" />
           </div>
           <div className="mt-8">
-            <Button type="submit" isLoading={isLoading} hasIcon>
+            <Button type="submit" status={status}>
               Confirm booking
             </Button>
           </div>
