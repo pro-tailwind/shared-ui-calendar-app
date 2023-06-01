@@ -81,7 +81,7 @@ export const Button = ({
         className
       )}
     >
-      <span className="flex items-center gap-3">
+      <span className="flex items-center justify-center gap-3">
         <Transition
           appear
           show={status === 'loading'}

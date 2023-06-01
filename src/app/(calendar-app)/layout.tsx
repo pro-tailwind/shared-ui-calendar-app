@@ -1,4 +1,4 @@
-import AppShell from './app-shell'
+import AppShell from '../../components/shell/app-shell'
 
 import '@/styles/tailwind.css'
 

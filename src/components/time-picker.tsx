@@ -26,11 +26,14 @@ export function TimePicker({ selectedDate, bookingAvailabilities }: TimePickerPr
       {/* Scroll  mask */}
       <div className="pointer-events-none absolute inset-x-8 bottom-0 z-10 hidden h-40 bg-gradient-to-t from-white md:block xl:inset-x-10"></div>
 
+      {/* Header */}
       <div className="flex h-12 items-center justify-center md:justify-start">
         <h2 className="text-lg font-semibold">
           {formatter.format(selectedDate.toDate(getLocalTimeZone()))}
         </h2>
       </div>
+
+      {/* Time slots */}
       <div className="-mx-4 overflow-y-auto p-4">
         <div className="relative">
           <div
@@ -103,9 +106,12 @@ function TimeSlot({ availability, selectedTime, setSelectedTime }) {
       >
         <Button
           block
-          size='large'
+          size="large"
           impact={isSelected ? 'none' : 'light'}
-          className={twMerge('focus:ring-inset active:translate-y-0', isSelected ? 'disabled:opacity-100 text-white' : '')}
+          className={twMerge(
+            'focus:ring-inset active:translate-y-0',
+            isSelected ? 'text-white disabled:opacity-100' : ''
+          )}
           disabled={isSelected}
           onClick={() => setSelectedTime(availability.startTime)}
         >

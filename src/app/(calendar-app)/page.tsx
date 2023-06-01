@@ -1,7 +1,7 @@
 'use client'
 
 import { useContext } from 'react'
-import { SelectedDateContext } from './app-shell'
+import { SelectedDateContext } from '../../components/shell/app-shell'
 
 import { Calendar } from '@/components/calendar'
 import { TimePicker } from '@/components/time-picker'

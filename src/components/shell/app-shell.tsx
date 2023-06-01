@@ -5,10 +5,10 @@ import { I18nProvider, SSRProvider, useLocale } from 'react-aria'
 import { useState, useContext, createContext } from 'react'
 import { today, getLocalTimeZone } from '@internationalized/date'
 
-import { SidePanel } from '@/components/side-panel'
-import { MainPanel } from '@/components/main-panel'
+import { SidePanel } from '@/components/shell/side-panel'
+import { MainPanel } from '@/components/shell/main-panel'
 import { Ribbon } from '@/components/ribbon'
-import { BackgroundDecoration } from '@/components/background-decoration'
+import { BackgroundDecoration } from '@/components/shell/background-decoration'
 import { ThemeSwitcher } from '@/components/theme-switcher'
 
 export const SelectedDateContext = createContext<any>(null)
